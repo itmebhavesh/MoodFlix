@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090b14">
+  <title>MoodFlix — Find your next thriller</title>
+  <style>
+    :root{color-scheme:dark;--bg:#090b14;--panel:#121625;--line:#2b3145;--text:#f6f7fb;--muted:#a5adc2;--accent:#a78bfa;--accent2:#7c3aed}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -15%,#30204e 0,transparent 42%),var(--bg);color:var(--text);font:16px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}
+    .shell{width:min(850px,calc(100% - 28px));margin:auto;padding:32px 0 60px}.brand{font-weight:900;letter-spacing:.08em;font-size:14px;color:var(--accent)}.hero{text-align:center;padding:32px 0 26px}.hero h1{font-size:clamp(34px,7vw,58px);line-height:1.05;margin:12px 0}.hero p{color:var(--muted);max-width:580px;margin:12px auto}.pill{display:inline-flex;border:1px solid #4a3c6e;background:#201733;color:#ddd0ff;border-radius:99px;padding:6px 12px;font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+    .quiz{background:rgba(18,22,37,.96);border:1px solid var(--line);border-radius:24px;padding:clamp(20px,5vw,38px);box-shadow:0 22px 70px #0005}.progressline{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;gap:10px}.track{height:5px;background:#282d40;border-radius:99px;margin:12px 0 28px;overflow:hidden}.bar{height:100%;background:linear-gradient(90deg,var(--accent2),#c4b5fd);width:10%;transition:width .2s}.question{font-size:clamp(23px,4vw,32px);line-height:1.2;margin:0 0 9px}.sub{color:var(--muted);margin:0 0 22px}.options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.option{min-height:58px;text-align:left;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:#171c2d;color:var(--text);font:inherit;cursor:pointer;transition:.15s}.option:hover{border-color:#9b82ef;transform:translateY(-1px)}.option.selected{border-color:var(--accent);background:#2a2141;box-shadow:inset 0 0 0 1px var(--accent)}.option:focus-visible,.btn:focus-visible{outline:3px solid #c4b5fd;outline-offset:2px}.controls{display:flex;justify-content:space-between;gap:12px;margin-top:26px}.btn{border:1px solid var(--line);border-radius:12px;padding:12px 20px;font:inherit;font-weight:700;cursor:pointer;background:#20263a;color:var(--text)}.btn.primary{background:linear-gradient(120deg,#7c3aed,#9f67ef);border-color:transparent}.btn:disabled{opacity:.35;cursor:not-allowed}.hint{font-size:13px;color:var(--muted);margin-top:18px}.results{margin-top:24px}.movie{display:grid;grid-template-columns:100px 1fr;gap:16px;padding:16px;border:1px solid var(--line);border-radius:16px;background:#141929;margin-top:12px}.poster{width:100px;aspect-ratio:2/3;object-fit:cover;background:#262b3b;border-radius:8px}.movie h3{margin:0 0 5px}.meta{font-size:13px;color:var(--muted)}.notice{background:#28203a;border:1px solid #4c3c68;color:#d8c9ff;border-radius:12px;padding:12px;font-size:13px;margin-top:16px}.empty{color:var(--muted);padding:20px 0}.hidden{display:none!important}footer{text-align:center;color:#727b92;font-size:12px;padding-top:24px}
+    @media(max-width:580px){.options{grid-template-columns:1fr}.option{min-height:52px}.movie{grid-template-columns:78px 1fr;padding:12px;gap:12px}.poster{width:78px}.controls .btn{padding:11px 15px}.hero{padding-top:25px}}
+  </style>
+</head>
+<body><div class="shell">
+  <div class="brand">MOODFLIX</div>
+  <header class="hero"><span class="pill">Personalized movie discovery</span><h1>Find your next <span style="color:#c4b5fd">thriller.</span></h1><p>Answer a few questions about twists, suspense, pacing, and language. We'll use your taste to rank the closest matches.</p></header>
+  <main>
+    <section class="quiz" id="quiz" aria-live="polite">
+      <div class="progressline"><span id="stepLabel">QUESTION 1 OF 10</span><span id="percentLabel">10%</span></div><div class="track"><div class="bar" id="progressBar"></div></div>
+      <h2 class="question" id="questionTitle">Loading quiz…</h2><p class="sub" id="questionSub"></p><div class="options" id="options"></div>
+      <div class="controls"><button class="btn" id="backBtn" type="button" disabled>Back</button><button class="btn primary" id="nextBtn" type="button" disabled>Continue →</button></div>
+      <p class="hint" id="questionHint">Choose the answer that best matches your taste.</p>
+    </section>
+    <section class="results hidden" id="results" aria-live="polite"></section>
+  </main><footer>MoodFlix · Discover stories that match your taste</footer>
+</div><script src="{{ url_for('static', filename='js/recommender.js') }}" defer></script></body></html>
