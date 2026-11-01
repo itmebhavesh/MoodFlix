@@ -186,6 +186,11 @@ def _fetch_movie_metadata(title, year):
 
     return metadata, ok
 
+
+@lru_cache(maxsize=512)
+def get_movie_metadata(title, year=None):
+    """Return cached movie metadata in the dictionary format used by routes."""
+    metadata, _ok = _fetch_movie_metadata(title, year)
     return metadata
 
 
